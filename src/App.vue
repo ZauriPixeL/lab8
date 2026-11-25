@@ -32,8 +32,7 @@ async function logout() {
     <q-header class="site-header">
       <div class="container topbar">
         <router-link class="brand" to="/" aria-label="บ้านริม หน้าหลัก">
-          <span class="brand-mark" aria-hidden="true">⌂</span>
-          <span><b>บ้านริม</b><small>BANRIM STAY</small></span>
+          <b>บ้านริม</b>
         </router-link>
         <nav aria-label="เมนูหลัก">
           <router-link to="/">ห้องพัก</router-link>
@@ -46,6 +45,6 @@ async function logout() {
     <q-page-container>
       <router-view :key="$route.fullPath" />
     </q-page-container>
-    <footer><div class="container footer-inner"><b>บ้านริม · Banrim Stay</b><span>ระบบจองห้องพักสาธิตสำหรับ Lab 8</span></div></footer>
+    <footer class="container">ข้อมูลการจองเก็บในเบราว์เซอร์ที่ใช้จอง</footer>
   </q-layout>
 </template>

@@ -60,12 +60,12 @@ onMounted(load)
 <template>
   <q-page class="container main-page inner-page">
     <router-link class="back" :to="id ? '/bookings' : '/'">{{ id ? '‹ การจองของฉัน' : '‹ ห้องพักทั้งหมด' }}</router-link>
-    <p class="eyebrow">Reservation</p><h1>{{ id ? 'แก้ไขการจอง' : 'จองห้องพัก' }}</h1>
+    <h1>{{ id ? 'แก้ไขการจอง' : 'จองห้องพัก' }}</h1>
     <p v-if="busy" class="notice" role="status"><q-spinner /> กำลังโหลด…</p>
     <div v-else-if="loadError" class="error" role="alert">{{ loadError }} <q-btn flat label="ลองอีกครั้ง" @click="load" /></div>
     <div v-else-if="room" class="booking-grid">
       <q-form class="panel stack" @submit="save">
-        <h2>รายละเอียดการเข้าพัก</h2>
+        <h2>ข้อมูลผู้เข้าพัก</h2>
         <label class="field">ห้องพัก
           <select v-model="form.roomId"><option v-for="item in stay.rooms" :key="item.id" :value="item.id">{{ item.id }} · {{ item.name }}</option></select>
         </label>
@@ -83,8 +83,8 @@ onMounted(load)
       </q-form>
       <aside class="room-card summary">
         <div class="plan"><img :src="'./rooms/' + room.id + '.webp'" :alt="'แผนผังของ' + room.name"><span class="room-tag">ห้อง {{ room.id }}</span></div>
-        <div class="card-body"><p class="eyebrow">{{ room.english }}</p><h2>{{ room.name }}</h2><p class="subtext">{{ room.detail }}</p>
-          <dl class="bill"><div><dt>ราคาต่อคืน</dt><dd>{{ money(room.price) }}</dd></div><div><dt>ระยะเวลาเข้าพัก</dt><dd>{{ nights }} คืน</dd></div>
+        <div class="card-body"><h2>{{ room.name }}</h2><p class="subtext">{{ room.detail }}</p>
+          <dl class="bill"><div><dt>ราคาต่อคืน</dt><dd>{{ money(room.price) }}</dd></div><div><dt>จำนวนคืน</dt><dd>{{ nights }} คืน</dd></div>
             <div class="bill-total"><dt>ยอดรวม</dt><dd aria-live="polite">{{ money(total) }}</dd></div></dl>
         </div>
       </aside>

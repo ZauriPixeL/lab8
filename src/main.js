@@ -20,7 +20,11 @@ async function start() {
   app.use(Quasar, {
     components: { QLayout, QHeader, QPageContainer, QPage, QBtn, QForm, QInput, QDialog, QCard, QSpinner },
     plugins: { Notify },
-    config: { brand: { primary: '#225b4a', negative: '#9b372c' }, notify: { position: 'bottom', timeout: 2500 } }
+    config: {
+      dark: true,
+      brand: { primary: '#e2e2e5', negative: '#ffada8' },
+      notify: { position: 'bottom', timeout: 2500 }
+    }
   })
   api.interceptors.response.use(response => response, error => {
     if (error.response?.status === 401 && error.config?.url !== '/auth/login') {

@@ -11,9 +11,8 @@ defineEmits(['book'])
       <span class="room-tag">ห้อง {{ room.id }}</span>
     </div>
     <div class="card-body">
-      <p class="eyebrow">{{ room.english }}</p>
       <h2>{{ room.name }}</h2>
-      <p class="specs">{{ room.beds }} <i>·</i> {{ room.capacity }} คน <i>·</i> {{ room.area }} ตร.ม.</p>
+      <p class="specs">{{ room.beds }} <span aria-hidden="true">·</span> {{ room.capacity }} คน <span aria-hidden="true">·</span> {{ room.area }} ตร.ม.</p>
       <div class="card-bottom">
         <span><strong>{{ money(room.price) }}</strong><small> / คืน</small></span>
         <q-btn unelevated no-caps color="primary" label="จองห้องนี้" @click="$emit('book', room.id)" />

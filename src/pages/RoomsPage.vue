@@ -27,11 +27,8 @@ onMounted(load)
 
 <template>
   <q-page class="container main-page">
-    <header class="hero">
-      <div><p class="eyebrow">Banrim Stay</p><h1>เลือกห้องพัก</h1><p>ดูผังห้อง เปรียบเทียบราคา แล้วเลือกวันเข้าพัก</p></div>
-    </header>
     <section aria-labelledby="rooms-title">
-      <div class="section-heading"><div><h2 id="rooms-title">ห้องพักของเรา</h2>
+      <div class="section-heading"><div><h1 id="rooms-title">เลือกห้องพัก</h1>
         <p class="subtext" aria-live="polite" v-if="!loading && !error">พบ {{ filtered.length }} ห้อง</p></div>
         <label class="filter">ผู้เข้าพัก <select v-model.number="guests"><option v-for="n in 4" :key="n" :value="n">{{ n }} คน</option></select></label>
       </div>
