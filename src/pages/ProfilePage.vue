@@ -43,8 +43,8 @@
         </q-card>
       </div>
 
-      <!-- การ์ดข้อมูล Environment Variables (บทที่ 8) -->
-      <div class="col-12 col-md-6">
+      <!-- การ์ดข้อมูล Environment Variables (แสดงเฉพาะ Admin) -->
+      <div v-if="authStore.role === 'admin'" class="col-12 col-md-6">
         <q-card flat bordered class="bg-white full-height">
           <q-card-section>
             <div class="text-subtitle1 text-weight-bold text-grey-9">
