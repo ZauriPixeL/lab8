@@ -2,7 +2,7 @@
 
 Lab 8 วิชา 968-362 Front-end Development
 
-[เว็บเดโม](https://banrim-stay-lab8.littlestar32.chatgpt.site) · [GitHub](https://github.com/ZauriPixeL/lab8)
+[เว็บเดโม](https://lab8-blush.vercel.app) · [GitHub](https://github.com/ZauriPixeL/lab8)
 
 บัญชีทดลอง guest และ admin ใช้รหัสผ่าน 123456 ทั้งสองบัญชี เฉพาะ admin เปิดหน้าจัดการอนุมัติการจองได้
 
