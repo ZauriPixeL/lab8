@@ -1,16 +1,18 @@
 <script setup>
 import { computed, onMounted, ref } from 'vue'
 import { useStayStore } from '../stores/stay'
+import { useRoute } from 'vue-router'
 import { money } from '../lib/stay'
 import { messageOf } from '../boot/api'
 
 const stay = useStayStore()
-const search = ref('')
+const route = useRoute()
+const province = computed(() => route.query.province || '')
+const provinces = computed(() => [...new Set(stay.places.map(p => p.province))])
 const loading = ref(true)
 const error = ref('')
 const filtered = computed(() => {
-  const word = search.value.trim()
-  return stay.places.filter(place => [place.name, place.area, place.setting].some(text => text.includes(word)))
+  return stay.places.filter(place => place.province === province.value)
 })
 async function load() {
   loading.value = true
@@ -24,21 +26,19 @@ onMounted(load)
 
 <template>
   <q-page class="container main-page">
-    <div class="section-heading place-heading">
-      <div><h1>เลือกสถานที่พัก</h1><p class="subtext">อยากไปที่ไหน เลือกดูห้องพักได้เลย</p></div>
-      <label class="search-field">ค้นหาสถานที่
-        <input v-model="search" type="search" placeholder="เช่น กระบี่ หรือ ทะเล">
-      </label>
-    </div>
+    <header class="destination-hero" v-if="!province"><h1>เลือกจังหวัด</h1></header>
+    <header class="hotel-title" v-else><router-link to="/">‹ ทุกจังหวัด</router-link><h1>ที่พักใน{{ province }}</h1></header>
     <p v-if="loading" class="notice" role="status">กำลังโหลดสถานที่…</p>
     <p v-else-if="error" class="error" role="alert">{{ error }} <q-btn flat label="ลองอีกครั้ง" @click="load" /></p>
-    <div v-else-if="!filtered.length" class="empty panel">
-      <h2>ไม่พบสถานที่ที่ค้นหา</h2><q-btn outline color="primary" label="ดูทุกสถานที่" @click="search = ''" />
+    <div v-else-if="!province" class="province-grid">
+      <router-link v-for="name in provinces" :key="name" class="province-row" :to="{query:{province:name}}">
+        <strong>{{ name }}</strong><span>{{ stay.places.filter(p => p.province === name).length }} ที่พัก ›</span>
+      </router-link>
     </div>
     <div v-else class="places-grid">
       <article v-for="place in filtered" :key="place.id" class="place-card">
         <router-link class="place-link" :to="{ name: 'rooms', params: { placeId: place.id } }" :aria-label="'ดูห้องพักที่' + place.name">
-          <img class="place-photo" :src="'./places/' + place.id + '.webp'" :alt="place.imageAlt">
+
           <div class="place-info">
             <div class="place-meta">{{ place.area }} · {{ place.setting }}</div>
             <h2>{{ place.name }}</h2>

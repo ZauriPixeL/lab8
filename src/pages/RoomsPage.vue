@@ -51,12 +51,12 @@ onMounted(load)
 
 <template>
   <q-page class="container main-page">
-    <router-link class="back" to="/">‹ เลือกสถานที่</router-link>
+    <router-link class="back" :to="{path:'/',query:{province:place?.province}}">‹ กลับไปเลือกที่พัก</router-link>
     <p v-if="loading" role="status" class="notice">กำลังโหลดห้องพัก…</p>
     <div v-else-if="!place && !error" class="empty panel"><h1>ไม่พบสถานที่นี้</h1><q-btn flat color="primary" label="ดูทุกสถานที่" to="/" /></div>
     <template v-else>
       <header v-if="place" class="section-heading">
-        <div><h1>ห้องพักใน{{ place.name }}</h1><p class="subtext">{{ place.area }} · {{ place.setting }}</p></div>
+        <div><h1>{{ place.name }}</h1><p class="subtext">{{ place.area }} · {{ place.setting }}</p></div>
       </header>
       <form v-if="place" class="availability" @submit.prevent="searchDates">
         <label class="field">วันเข้าพัก<input v-model="checkIn" type="date" :min="dateAfter(0)" required></label>

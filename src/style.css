@@ -225,3 +225,18 @@ footer a, .back { color: var(--q-primary) }
   .availability { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)) }
   .availability .filter { grid-column: 1 / -1 }
 }
+
+.destination-hero {display:flex;align-items:flex-end;min-height:300px;padding:36px;color:white;border-radius:14px;background:linear-gradient(0deg,#132319db,transparent 85%),url('/places/khao-yai.webp') center 62% / cover}
+.destination-hero h1 {font-size:clamp(2.3rem,5vw,4rem)}
+.province-grid {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:24px}
+.province-row {display:flex;align-items:center;justify-content:space-between;gap:8px;border:1px solid #d4d9d5;border-top:4px solid #8a6445;border-radius:8px;padding:24px 18px;text-decoration:none;background:#fff}
+.province-row strong {font-size:1.4rem}
+.province-row span {color:#61594e}
+.province-row:hover,.place-card:hover {background:#faf7f2}
+.hotel-title {border-bottom:1px solid #dedbd5;padding-bottom:20px;margin-bottom:24px}
+.hotel-title h1 {margin-top:12px}
+.place-card {border-top:4px solid #8a6445}
+body {--q-primary:#374d5c;--ink:#262d32;--muted:#556068;--line:#dddcd7}
+.site-header {border-bottom:2px solid #e7e3da}
+.brand {letter-spacing:-.04em}
+@media(max-width:760px){.province-grid{grid-template-columns:1fr}.destination-hero{min-height:215px;padding:22px}.province-row{padding:15px 18px}}
