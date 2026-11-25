@@ -7,7 +7,7 @@ defineEmits(['book'])
 <template>
   <article class="room-card">
     <div class="plan">
-      <img :src="'./rooms/' + room.id + '.webp'" :alt="'แผนผัง ' + room.name + ' ' + room.beds">
+      <img :src="'./rooms/' + room.plan + '.webp'" :alt="'แผนผัง ' + room.name + ' ' + room.beds">
       <span class="room-tag">ห้อง {{ room.id }}</span>
     </div>
     <div class="card-body">

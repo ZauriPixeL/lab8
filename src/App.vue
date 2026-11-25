@@ -32,10 +32,10 @@ async function logout() {
     <q-header class="site-header">
       <div class="container topbar">
         <router-link class="brand" to="/" aria-label="บ้านริม หน้าหลัก">
-          <b>บ้านริม</b>
+          <span class="brand-icon" aria-hidden="true">⌂</span><b>บ้านริม</b>
         </router-link>
         <nav aria-label="เมนูหลัก">
-          <router-link to="/">ห้องพัก</router-link>
+          <router-link to="/" :class="{ current: $route.name === 'rooms' }">เลือกสถานที่</router-link>
           <router-link to="/bookings">การจองของฉัน</router-link>
         </nav>
         <q-btn v-if="auth.user" no-caps unelevated class="session-btn" label="ออกจากระบบ" :loading="leaving" @click="logout" />
@@ -45,6 +45,6 @@ async function logout() {
     <q-page-container>
       <router-view :key="$route.fullPath" />
     </q-page-container>
-    <footer class="container">ข้อมูลการจองเก็บในเบราว์เซอร์ที่ใช้จอง</footer>
+    <footer class="container"><span>ที่พักจำลองสำหรับ Lab 8 · ข้อมูลจองเก็บในเบราว์เซอร์นี้</span><a href="./places/credits.txt" target="_blank" rel="noopener">ที่มาภาพถ่าย</a></footer>
   </q-layout>
 </template>

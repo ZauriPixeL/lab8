@@ -26,12 +26,18 @@ export function money(value) {
   return '฿' + value.toLocaleString('th-TH')
 }
 
+export function dateError(checkIn, checkOut) {
+  if (!validDate(checkIn) || !validDate(checkOut)) return 'กรุณาระบุวันที่ให้ครบถ้วน'
+  if (checkIn < dateAfter(0)) return 'วันเข้าพักต้องเป็นวันนี้หรือวันถัดไป'
+  if (checkOut <= checkIn) return 'วันออกต้องอยู่หลังวันเข้าพัก'
+  return ''
+}
+
 export function bookingError(input, room) {
   if (!room) return 'กรุณาเลือกห้องพัก'
   if (!input.guestName?.trim() || input.guestName.trim().length > 50) return 'กรุณาระบุชื่อผู้จอง 1–50 ตัวอักษร'
-  if (!validDate(input.checkIn) || !validDate(input.checkOut)) return 'กรุณาระบุวันที่ให้ครบถ้วน'
-  if (input.checkIn < dateAfter(0)) return 'วันเข้าพักต้องเป็นวันนี้หรือวันถัดไป'
-  if (input.checkOut <= input.checkIn) return 'วันออกต้องอยู่หลังวันเข้าพัก'
+  const dateMessage = dateError(input.checkIn, input.checkOut)
+  if (dateMessage) return dateMessage
   if (!Number.isInteger(input.guests) || input.guests < 1 || input.guests > room.capacity) {
     return 'จำนวนผู้เข้าพักต้องอยู่ระหว่าง 1 ถึง ' + room.capacity + ' คน'
   }

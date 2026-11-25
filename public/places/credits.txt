@@ -1,0 +1,21 @@
+ภาพประกอบสถานที่จาก Wikimedia Commons
+ภาพเหล่านี้เป็นภาพพื้นที่ท่องเที่ยว ส่วนข้อมูลห้องพักและราคาเป็นข้อมูลสมมติสำหรับ Lab 8
+ทุกภาพปรับขนาด แปลงเป็น WebP และแสดงแบบครอบตัด
+
+เชียงใหม่
+Doi Inthanon, View from Royal Pagoda, Thailand.jpg
+© Vyacheslav Argenberg · CC BY 4.0
+https://commons.wikimedia.org/wiki/File:Doi_Inthanon,_View_from_Royal_Pagoda,_Thailand.jpg
+https://creativecommons.org/licenses/by/4.0/
+
+กระบี่
+Railay, Krabi, Thailand.jpg
+© Vyacheslav Argenberg · CC BY 4.0
+https://commons.wikimedia.org/wiki/File:Railay,_Krabi,_Thailand.jpg
+https://creativecommons.org/licenses/by/4.0/
+
+เขาใหญ่
+Khao Yai National Park Landscape.JPG
+Mammalwatcher · CC0 1.0
+https://commons.wikimedia.org/wiki/File:Khao_Yai_National_Park_Landscape.JPG
+https://creativecommons.org/publicdomain/zero/1.0/

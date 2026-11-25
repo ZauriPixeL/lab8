@@ -1,8 +1,8 @@
 // Mock API สำหรับ Lab ข้อมูลเก็บใน IndexedDB ของเบราว์เซอร์ที่ใช้งาน
 import MockAdapter from 'axios-mock-adapter'
 import { openDB } from 'idb'
-import { rooms } from './rooms'
-import { bookingError, nightsBetween } from '../lib/stay'
+import { places, rooms } from './rooms'
+import { bookingError, dateError, nightsBetween } from '../lib/stay'
 
 const users = [
   { username: 'demo', password: 'stay1234', name: 'นักเดินทาง' },
@@ -37,6 +37,16 @@ function memberOnly(action) {
   }
 }
 
+function overlaps(booking, checkIn, checkOut) {
+  return checkIn < booking.checkOut && checkOut > booking.checkIn
+}
+
+function bookingDetails(booking) {
+  const room = rooms.find(item => item.id === booking.roomId)
+  const place = places.find(item => item.id === room?.placeId)
+  return { ...booking, placeName: place?.name, plan: room?.plan }
+}
+
 async function saveBooking(request, session, db) {
   const input = JSON.parse(request.data)
   const room = rooms.find(item => item.id === input.roomId)
@@ -51,9 +61,9 @@ async function saveBooking(request, session, db) {
   if (editing && !bookings.some(item => item.id === id && item.owner === session.username)) {
     return error(404, 'ไม่พบรายการจองของคุณ')
   }
-  const overlaps = bookings.some(item => item.id !== id && item.roomId === room.id
-    && input.checkIn < item.checkOut && input.checkOut > item.checkIn)
-  if (overlaps) return error(409, 'ห้องนี้มีผู้จองในช่วงวันที่เลือก กรุณาเปลี่ยนห้องหรือวันพัก')
+  const taken = bookings.some(item => item.id !== id && item.roomId === room.id
+    && overlaps(item, input.checkIn, input.checkOut))
+  if (taken) return error(409, 'ห้องนี้มีผู้จองในช่วงวันที่เลือก กรุณาเปลี่ยนห้องหรือวันพัก')
 
   const nights = nightsBetween(input.checkIn, input.checkOut)
   const booking = {
@@ -68,7 +78,26 @@ async function saveBooking(request, session, db) {
 
 export function enableMock(api) {
   const mock = new MockAdapter(api, { delayResponse: 180 })
-  mock.onGet('/rooms').reply(200, rooms)
+  mock.onGet('/places').reply(() => {
+    const result = places.map(place => {
+      const options = rooms.filter(room => room.placeId === place.id)
+      return { ...place, count: options.length, from: Math.min(...options.map(room => room.price)) }
+    })
+    return [200, result]
+  })
+  mock.onGet('/rooms').reply(async request => {
+    const { placeId, checkIn, checkOut } = request.params || {}
+    let options = placeId ? rooms.filter(room => room.placeId === placeId) : rooms
+    if (checkIn || checkOut) {
+      const message = dateError(checkIn, checkOut)
+      if (message) return error(400, message)
+      const db = await dbReady
+      const bookings = await db.getAll('bookings')
+      options = options.filter(room => !bookings.some(item =>
+        item.roomId === room.id && overlaps(item, checkIn, checkOut)))
+    }
+    return [200, options]
+  })
   mock.onPost('/auth/login').reply(async request => {
     const input = JSON.parse(request.data)
     const user = users.find(item => item.username === input.username && item.password === input.password)
@@ -88,7 +117,7 @@ export function enableMock(api) {
   }))
   mock.onGet('/bookings').reply(memberOnly(async (request, session, db) => {
     const bookings = await db.getAll('bookings')
-    return [200, bookings.filter(item => item.owner === session.username)]
+    return [200, bookings.filter(item => item.owner === session.username).map(bookingDetails)]
   }))
   mock.onPost('/bookings').reply(memberOnly(saveBooking))
   mock.onPut(/^\/bookings\/[^/]+$/).reply(memberOnly(saveBooking))

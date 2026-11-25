@@ -21,8 +21,7 @@ async function start() {
     components: { QLayout, QHeader, QPageContainer, QPage, QBtn, QForm, QInput, QDialog, QCard, QSpinner },
     plugins: { Notify },
     config: {
-      dark: true,
-      brand: { primary: '#e2e2e5', negative: '#ffada8' },
+      brand: { primary: '#2458a5', negative: '#a73138' },
       notify: { position: 'bottom', timeout: 2500 }
     }
   })

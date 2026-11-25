@@ -1,4 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
+import PlacesPage from '../pages/PlacesPage.vue'
 import RoomsPage from '../pages/RoomsPage.vue'
 import LoginPage from '../pages/LoginPage.vue'
 import BookingForm from '../pages/BookingForm.vue'
@@ -8,7 +9,8 @@ import { useAuthStore } from '../stores/auth'
 export const router = createRouter({
   history: createWebHashHistory(),
   routes: [
-    { path: '/', name: 'rooms', component: RoomsPage },
+    { path: '/', name: 'places', component: PlacesPage },
+    { path: '/places/:placeId', name: 'rooms', component: RoomsPage },
     { path: '/login', name: 'login', component: LoginPage },
     { path: '/bookings', name: 'bookings', component: MyBookings, meta: { requiresAuth: true } },
     { path: '/bookings/new/:roomId', name: 'new', component: BookingForm, meta: { requiresAuth: true } },
@@ -25,5 +27,5 @@ router.beforeEach(async to => {
     auth.clear()
     return { name: 'login', query: { next: to.fullPath } }
   }
-  if (to.name === 'login' && auth.signedIn) return { name: 'rooms' }
+  if (to.name === 'login' && auth.signedIn) return { name: 'places' }
 })

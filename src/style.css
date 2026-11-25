@@ -11,16 +11,16 @@
   font-display: swap;
 }
 :root {
-  color-scheme: dark;
-  --page: #161617;
-  --panel: #222224;
-  --control: #1b1b1d;
-  --ink: #f1f1f2;
-  --muted: #b8b8bd;
-  --line: #414145;
+  color-scheme: light;
+  --page: #fff;
+  --panel: #fff;
+  --control: #fff;
+  --ink: #18283d;
+  --muted: #526277;
+  --line: #dbe2ec;
 }
 * { box-sizing: border-box }
-body, body.body--dark {
+body {
   margin: 0;
   color: var(--ink);
   background: var(--page);
@@ -29,17 +29,17 @@ body, body.body--dark {
 }
 h1, h2, p, dl, dd { margin: 0 }
 h1, h2 { line-height: 1.35; font-weight: 700; letter-spacing: -.02em }
-h1 { font-size: clamp(1.85rem, 4vw, 2.4rem) }
+h1 { font-size: clamp(1.95rem, 4vw, 2.65rem) }
 h2 { font-size: 1.4rem }
 a { color: inherit }
 .container { width: min(1120px, calc(100% - 64px)); margin-inline: auto }
-.site-header { background: #101011; border-bottom: 1px solid var(--line) }
+.site-header { background: #fff; color: var(--ink); border-bottom: 1px solid var(--line) }
 .topbar, .topbar nav, .section-heading, .filter, .card-bottom, .actions, .demo-box {
   display: flex;
   align-items: center;
 }
-.topbar { min-height: 64px; gap: 32px }
-.brand { text-decoration: none; font-size: 1.4rem; flex-shrink: 0 }
+.topbar { min-height: 70px; gap: 32px }
+.brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-size: 1.4rem; flex-shrink: 0 }
 .topbar nav { align-self: stretch; gap: 22px; margin-left: auto }
 .topbar nav a {
   display: grid;
@@ -49,7 +49,7 @@ a { color: inherit }
   text-decoration: none;
   font-size: .95rem;
 }
-.topbar nav a.router-link-exact-active { color: var(--ink); border-color: var(--ink) }
+.topbar nav a.router-link-exact-active, .topbar nav a.current { color: var(--q-primary); border-color: var(--q-primary) }
 .topbar a:hover, .back:hover { text-decoration: underline }
 .q-btn {
   min-height: 42px;
@@ -58,8 +58,8 @@ a { color: inherit }
   font: 600 .94rem/1.4 BanrimThai, Arial, sans-serif;
   letter-spacing: 0;
 }
-.q-btn.bg-primary, .q-btn.bg-negative { color: #181819 !important }
-.session-btn { color: var(--ink); background: #363638 }
+
+.session-btn { color: var(--ink); background: #edf3fd }
 .q-page { min-height: calc(100vh - 119px) !important }
 .main-page, .inner-page { padding-block: 40px 48px }
 .section-heading { justify-content: space-between; flex-wrap: wrap; gap: 14px; margin: 0 0 22px }
@@ -70,7 +70,7 @@ select, input[type="date"] {
   min-height: 44px;
   max-width: 100%;
   padding: 9px 12px;
-  border: 1px solid #76767b;
+  border: 1px solid #8595a8;
   border-radius: 5px;
   color: var(--ink);
   background-color: var(--control);
@@ -79,7 +79,7 @@ select, input[type="date"] {
 select {
   appearance: none;
   padding-right: 34px;
-  background-image: linear-gradient(45deg, transparent 50%, #cbcbce 50%), linear-gradient(135deg, #cbcbce 50%, transparent 50%);
+  background-image: linear-gradient(45deg, transparent 50%, #596b81 50%), linear-gradient(135deg, #596b81 50%, transparent 50%);
   background-position: calc(100% - 17px) 50%, calc(100% - 12px) 50%;
   background-size: 5px 5px;
   background-repeat: no-repeat;
@@ -88,11 +88,11 @@ select {
   background: var(--panel);
   color: var(--ink);
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: 12px;
 }
 .room-card { overflow: hidden }
 .plan { position: relative; background: #cfcfd0; line-height: 0 }
-.plan img, .reservation img { filter: grayscale(1) }
+
 .plan img { display: block; width: 100%; aspect-ratio: 660/350; object-fit: cover }
 .room-tag {
   position: absolute;
@@ -100,7 +100,7 @@ select {
   left: 12px;
   padding: 3px 9px;
   border-radius: 4px;
-  background: #29292b;
+  background: #26374e;
   color: white;
   font-size: .85rem;
   line-height: 1.5;
@@ -121,7 +121,7 @@ footer { padding-block: 16px; border-top: 1px solid var(--line); color: var(--mu
 .q-field, .q-notification { font-family: inherit }
 .q-field__native, .q-field__label { font: inherit }
 .q-field__control { border-radius: 5px !important; background: var(--control) }
-.q-field--dark.q-field--outlined .q-field__control::before { border-color: #76767b }
+.q-field--outlined .q-field__control::before { border-color: #8595a8 }
 .demo-box { gap: 10px; justify-content: space-between; margin-top: 22px; border-top: 1px solid var(--line); padding-top: 15px; font-size: .94rem }
 .demo-box code { color: var(--muted) }
 .booking-grid { display: grid; grid-template-columns: 1.25fr .9fr; align-items: start; gap: 22px; margin-top: 20px }
@@ -146,7 +146,7 @@ footer { padding-block: 16px; border-top: 1px solid var(--line); color: var(--mu
 .confirm-box { width: min(420px, 95vw); padding: 24px }
 .confirm-box p { margin: 12px 0 18px }
 .error, .notice { padding: 12px 14px; border-radius: 5px }
-.error { background: #3b2828; color: #ffd4d0; border-left: 3px solid #dfa09a }
+.error { background: #fff1f0; color: #8c272e; border-left: 3px solid #dfa09a }
 .notice { background: var(--panel) }
 :focus-visible { outline: 3px solid #a6ccff; outline-offset: 3px }
 @media (max-width: 780px) {
@@ -171,4 +171,57 @@ footer { padding-block: 16px; border-top: 1px solid var(--line); color: var(--mu
   .reservation-info { flex: 1 }
   .reservation-end { width: 100%; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--line); padding-top: 8px }
   .reservation-end .actions { margin: 0 }
+}
+
+.brand-icon {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  background: var(--q-primary);
+  color: white;
+  border-radius: 9px;
+  font: 30px/1 Georgia, serif;
+  padding-bottom: 4px;
+}
+footer { display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between }
+footer a, .back { color: var(--q-primary) }
+.back:hover { color: #173e74 }
+.place-heading { margin: 6px 0 28px; align-items: end }
+.place-heading .subtext { margin-top: 6px; font-size: 1rem }
+.search-field { display: grid; gap: 5px; font-size: .92rem; color: var(--muted) }
+.search-field input {
+  width: min(100%, 280px);
+  min-height: 44px;
+  border: 1px solid #9aa9ba;
+  border-radius: 7px;
+  padding: 8px 14px;
+  background: white;
+  color: var(--ink);
+  font: inherit;
+}
+.places-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px }
+.place-card { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; box-shadow: 0 3px 10px #213d5b0a }
+.place-link { display: block; height: 100%; text-decoration: none }
+.place-card:hover, .place-card:focus-within { border-color: #829ec6; box-shadow: 0 4px 18px #1b437118 }
+.place-link:focus-visible { outline-offset: -4px }
+.place-photo { display: block; width: 100%; aspect-ratio: 1.55; object-fit: cover }
+.place-info { padding: 20px }
+.place-info h2 { font-size: 1.8rem; margin: 3px 0 }
+.place-meta, .place-price { color: var(--muted); font-size: .95rem }
+.place-price strong { color: var(--ink); font-size: 1.12rem }
+.place-action { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--line); margin-top: 17px; padding-top: 13px; font-size: .95rem; color: var(--muted) }
+.place-action b { padding: 6px 12px; border-radius: 6px; color: var(--q-primary); background: #edf3fd }
+.availability { display: flex; align-items: end; flex-wrap: wrap; gap: 12px; padding: 16px; background: #f2f6fc; border: 1px solid #d9e4f2; border-radius: 10px }
+.availability .field { flex: 1 1 140px; min-width: 0 }
+.availability .filter { display: grid; gap: 5px }
+.results { margin: 18px 0 12px; font-size: .97rem; color: var(--muted) }
+@media (max-width: 800px) { .places-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) } }
+@media (max-width: 599px) {
+  .places-grid { grid-template-columns: 1fr; gap: 16px }
+  .place-heading { margin-bottom: 16px }
+  .search-field, .search-field input { width: 100%; max-width: none }
+  .place-photo { aspect-ratio: 1.95 }
+  .availability { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)) }
+  .availability .filter { grid-column: 1 / -1 }
 }
