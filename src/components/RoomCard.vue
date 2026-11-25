@@ -1,22 +1,69 @@
-<script setup>
-import { money } from '../lib/stay'
-defineProps({ room: { type: Object, required: true } })
-defineEmits(['book'])
-</script>
-
 <template>
-  <article class="room-card">
-    <div class="plan">
-      <img :src="'./rooms/' + room.plan + '.webp'" :alt="'แผนผัง ' + room.name + ' ' + room.beds">
-      <span class="room-tag">ห้อง {{ room.id }}</span>
-    </div>
-    <div class="card-body">
-      <h2>{{ room.name }}</h2>
-      <p class="specs">{{ room.beds }} <span aria-hidden="true">·</span> {{ room.capacity }} คน <span aria-hidden="true">·</span> {{ room.area }} ตร.ม.</p>
-      <div class="card-bottom">
-        <span><strong>{{ money(room.price) }}</strong><small> / คืน</small></span>
-        <q-btn unelevated no-caps color="primary" label="จองห้องนี้" @click="$emit('book', room.id)" />
+  <q-card flat bordered class="room-card full-height column justify-between bg-white">
+    <div>
+      <div class="relative-position">
+        <q-img
+          :src="room.image"
+          :ratio="16 / 9"
+          spinner-color="primary"
+        />
+        <div class="absolute-top-right q-pa-sm">
+          <slot name="badge">
+            <q-badge color="primary" class="q-pa-xs text-weight-medium">
+              {{ room.type }}
+            </q-badge>
+          </slot>
+        </div>
       </div>
+
+      <q-card-section>
+        <div class="text-h6 text-weight-bold text-grey-9">{{ room.name }}</div>
+        <div class="text-subtitle1 text-primary text-weight-bold q-mt-xs">
+          {{ room.pricePerNight.toLocaleString() }} บาท / คืน
+        </div>
+        <div class="text-caption text-grey-7 q-mt-xs">
+          ขนาด {{ room.size }} | พักได้สูงสุด {{ room.maxGuests }} ท่าน
+        </div>
+        <div class="text-body2 text-grey-8 q-mt-sm">
+          {{ room.description }}
+        </div>
+      </q-card-section>
     </div>
-  </article>
+
+    <q-card-actions align="right" class="q-px-md q-pb-md">
+      <q-btn
+        flat
+        color="primary"
+        label="ดูรายละเอียด"
+        icon="info"
+        @click="onViewDetail"
+      />
+      <q-btn
+        unelevated
+        color="primary"
+        label="จองห้องนี้"
+        icon="book_online"
+        @click="onBookRoom"
+      />
+    </q-card-actions>
+  </q-card>
 </template>
+
+<script setup>
+const props = defineProps({
+  room: {
+    type: Object,
+    required: true
+  }
+})
+
+const emit = defineEmits(['view-detail', 'book-room'])
+
+const onViewDetail = () => {
+  emit('view-detail', props.room)
+}
+
+const onBookRoom = () => {
+  emit('book-room', props.room)
+}
+</script>

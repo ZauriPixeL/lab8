@@ -1,0 +1,60 @@
+{
+  "bookings": [
+    {
+      "id": "1",
+      "guestName": "สมชาย ใจดี",
+      "phone": "081-234-5678",
+      "roomId": 1,
+      "roomName": "Standard Twin Room",
+      "roomType": "Standard",
+      "checkIn": "2026-12-01",
+      "nights": 2,
+      "guests": 2,
+      "totalPrice": 2400,
+      "status": "Confirmed",
+      "note": "ขอห้องชั้นสูง ใกล้ลิฟต์"
+    },
+    {
+      "id": "2",
+      "guestName": "นภา สดใส",
+      "phone": "089-876-5432",
+      "roomId": 2,
+      "roomName": "Deluxe Sea View",
+      "roomType": "Deluxe",
+      "checkIn": "2026-12-03",
+      "nights": 3,
+      "guests": 2,
+      "totalPrice": 6600,
+      "status": "Pending",
+      "note": "เช็กอินช่วงบ่าย 2 โมง"
+    },
+    {
+      "id": "3",
+      "guestName": "กิตติพงษ์ รักเรียน",
+      "phone": "086-555-1212",
+      "roomId": 3,
+      "roomName": "Executive Pool Suite",
+      "roomType": "Suite",
+      "checkIn": "2026-12-05",
+      "nights": 1,
+      "guests": 2,
+      "totalPrice": 3800,
+      "status": "Confirmed",
+      "note": "รับอาหารเช้า 2 ที่"
+    },
+    {
+      "id": "4",
+      "guestName": "วิภาดา สุขสันต์",
+      "phone": "092-333-4455",
+      "roomId": 4,
+      "roomName": "Family Garden Room",
+      "roomType": "Family",
+      "checkIn": "2026-12-10",
+      "nights": 2,
+      "guests": 4,
+      "totalPrice": 6400,
+      "status": "Pending",
+      "note": "ขอเตียงเสริมสำหรับเด็ก 1 ที่"
+    }
+  ]
+}

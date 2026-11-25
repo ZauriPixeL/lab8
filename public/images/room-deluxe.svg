@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0369a1"/>
+      <stop offset="100%" stop-color="#0ea5e9"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="360" fill="url(#bg2)"/>
+  <circle cx="520" cy="85" r="36" fill="#fde68a" fill-opacity="0.9"/>
+  <path d="M0 265 Q160 235 320 265 T640 265 L640 360 L0 360 Z" fill="#ffffff" fill-opacity="0.18"/>
+  <rect x="170" y="165" width="300" height="85" rx="12" fill="#ffffff" fill-opacity="0.92"/>
+  <rect x="195" y="140" width="110" height="28" rx="8" fill="#e0f2fe"/>
+  <rect x="335" y="140" width="110" height="28" rx="8" fill="#e0f2fe"/>
+  <text x="320" y="105" text-anchor="middle" fill="#ffffff" font-family="sans-serif" font-size="26" font-weight="bold">DELUXE SEA VIEW</text>
+  <text x="320" y="295" text-anchor="middle" fill="#f0f9ff" font-family="sans-serif" font-size="16">38 sq.m. | King Bed + Sea Balcony</text>
+</svg>

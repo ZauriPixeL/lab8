@@ -1,0 +1,17 @@
+// src/css/app.scss
+
+body {
+  font-family: 'Sarabun', sans-serif;
+  background-color: #f4f7f9;
+  color: #1f2937;
+}
+
+.room-card {
+  border-radius: 12px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.room-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(30, 95, 116, 0.14);
+}
